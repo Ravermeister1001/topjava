@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,6 +17,8 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
 
 public class MealsUtil {
+
+    private static AtomicInteger mealIdCounter = new AtomicInteger(1);
 
     private static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
@@ -118,6 +121,14 @@ public class MealsUtil {
     }
 
     public static MealWithExceed createWithExceed(Meal meal, boolean exceeded) {
-        return new MealWithExceed(meal.getDateTime(), meal.getDescription(), meal.getCalories(), exceeded);
+        return new MealWithExceed(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), exceeded);
+    }
+
+    public static int getNewId() {
+        return mealIdCounter.getAndIncrement();
+    }
+
+    public static int getCurrentId() {
+        return mealIdCounter.get();
     }
 }
