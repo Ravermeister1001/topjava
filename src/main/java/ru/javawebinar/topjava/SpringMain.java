@@ -20,7 +20,11 @@ public class SpringMain {
             AdminRestController adminUserController = appCtx.getBean(AdminRestController.class);
             adminUserController.create(new User(null, "userName", "email@mail.ru", "password", Role.ROLE_ADMIN));
             MealRestController mealRestController = appCtx.getBean(MealRestController.class);
-            System.out.println(mealRestController.create(new Meal(LocalDateTime.now(), "x3", 300, SecurityUtil.authUserId()), SecurityUtil.authUserId()));
+            SecurityUtil.setId(1);
+            System.out.println(SecurityUtil.authUserId());
+            System.out.println(mealRestController.getAll());
+            System.out.println(mealRestController.getBetween("","", "", ""));
+            System.out.println(mealRestController.create(new Meal(LocalDateTime.now(), "x3", 300, SecurityUtil.authUserId())));
         }
     }
 }

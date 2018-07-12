@@ -54,18 +54,6 @@ public class MealServiceImpl implements MealService {
     @Override
     public List<MealWithExceed> getBetween(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime, int userId) {
         validateUserWithException(userId);
-        if (startDate == null) {
-            startDate = LocalDate.MIN;
-        }
-        if (endDate == null) {
-            endDate = LocalDate.MAX;
-        }
-        if (startTime == null) {
-            startTime = LocalTime.MIN;
-        }
-        if (endTime == null) {
-            endTime = LocalTime.MAX;
-        }
         return MealsUtil.getWithExceeded(repository.getBetween(startDate, endDate, startTime, endTime, userId), SecurityUtil.authUserCaloriesPerDay());
     }
 }

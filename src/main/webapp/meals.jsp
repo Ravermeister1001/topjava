@@ -22,6 +22,29 @@
     <h2>Meals</h2>
     <a href="meals?action=create">Add Meal</a>
     <hr/>
+    <form method="get" action="meals">
+        <input type="text" hidden name="action" value="getBetween"/>
+        <table border="0" cellpadding="5" cellspacing="0">
+            <tr>
+                <td>Start date:</td>
+                <td><input type="date" name="startDate"/></td>
+                <td>Start time:</td>
+                <td><input type="time" name="startTime"/></td>
+            </tr>
+            <tr>
+                <td>End date:</td>
+                <td><input type="date" name="endDate"/></td>
+                <td>End time:</td>
+                <td><input type="time" name="endTime"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Filter</button></td>
+                <td></td>
+                <td><button type="reset">Cancel</button></td>
+            </tr>
+        </table>
+    </form>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
