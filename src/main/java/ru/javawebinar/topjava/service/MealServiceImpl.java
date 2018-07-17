@@ -6,13 +6,16 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
+import static ru.javawebinar.topjava.util.MealsUtil.sortMeals;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class MealServiceImpl implements MealService {
 
+    @Autowired
     private final MealRepository repository;
 
     @Autowired
@@ -32,12 +35,12 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public List<Meal> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
-        return repository.getBetween(startDateTime, endDateTime, userId);
+        return sortMeals(repository.getBetween(startDateTime, endDateTime, userId));
     }
 
     @Override
     public List<Meal> getAll(int userId) {
-        return repository.getAll(userId);
+        return sortMeals(repository.getAll(userId));
     }
 
     @Override

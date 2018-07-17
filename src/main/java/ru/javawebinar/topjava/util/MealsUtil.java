@@ -25,6 +25,11 @@ public class MealsUtil {
 
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
+    public static List<Meal> sortMeals(List<Meal> meals) {
+        meals.sort(Comparator.comparing(Meal::getDateTime).reversed());
+        return meals;
+    }
+
     public static List<MealWithExceed> getWithExceeded(Collection<Meal> meals, int caloriesPerDay) {
         return getFilteredWithExceeded(meals, caloriesPerDay, meal -> true);
     }
